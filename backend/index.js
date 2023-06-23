@@ -42,5 +42,5 @@ const app=express()
 
 
  app.listen(process.env.PORT,()=>{
-    console.log("app is runing at 80880")
+    console.log("app is runing at 8080")
  })

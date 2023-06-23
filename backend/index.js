@@ -1,6 +1,8 @@
 const express = require("express");
 const { Configuration, OpenAIApi } = require("openai");
 const cors = require("cors");
+const userRouter = require("./routes/user.route");
+const { connection } = require("./configs/db");
 require("dotenv").config();
 
 const openai = new OpenAIApi(
@@ -14,6 +16,8 @@ const app = express();
 app.use(cors());
 
 app.use(express.json());
+
+app.use("/user", userRouter)
 
 app.post("/get-prompt-result", (req, res) => {
   const { prompt } = req.body;
@@ -41,6 +45,13 @@ app.post("/get-prompt-result", (req, res) => {
   }
 });
 
-app.listen(process.env.PORT, () => {
+app.listen(process.env.PORT, async () => {
+  try {
+    await connection
+    console.log("Connected To Database");
+
+  } catch (error) {
+    console.log(error);
+  }
   console.log(`app is runing at ${process.env.PORT}`);
 });

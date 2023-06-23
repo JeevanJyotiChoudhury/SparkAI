@@ -4,7 +4,7 @@ import Mainpage from "../Components/Mainpage";
 const HomePage = () => {
   return (
     <div>
-      <Mainpage />
+     {/* <Mainpage/> */}
     </div>
   );
 };

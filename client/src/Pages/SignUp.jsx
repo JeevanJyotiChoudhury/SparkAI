@@ -12,21 +12,47 @@ import {
   useColorModeValue,
   HStack,
   InputGroup,
+  Link,
   InputRightElement,
 } from "@chakra-ui/react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
+import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const handleRegister = () => {};
+  const navigate = useNavigate();
+  const handleLogin = () => {
+    navigate("/login");
+  };
+  const handleSignup = (e) => {
+    e.preventDefault();
+    const details = { name, email, password };
+
+    fetch("https://localhost:8080/user/register", {
+      method: "post",
+      body: JSON.stringify(details),
+      headers: { "Content-Type": "application/json" },
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        if (res.status == 200) {
+          localStorage.setItem("ch-token", res.data?.token);
+          alert("New User Has been Added");
+          navigate("/chat");
+          console.log(res);
+        } else {
+          alert(res.error);
+        }
+      })
+      .catch((err) => alert(err));
+  };
+
   return (
-    <div>
-      <Flex
-        minH={"70vh"}
-        align={"center"}
-        justify={"center"}
-        bg={useColorModeValue("gray.50", "gray.800")}
-      >
+    <div style={{ color: "white" }}>
+      <Flex minH={"70vh"} align={"center"} justify={"center"}>
         <Stack spacing={8} mx={"auto"} maxW={"lg"} py={3} px={6}>
           <Stack align={"center"}>
             <Heading fontSize={"2xl"} textAlign={"center"}>
@@ -35,7 +61,7 @@ const SignUp = () => {
           </Stack>
           <Box
             rounded={"lg"}
-            bg={useColorModeValue("white", "gray.700")}
+            bg={useColorModeValue("#3d3e42")}
             boxShadow={"lg"}
             w={"400px"}
             p={8}
@@ -44,17 +70,29 @@ const SignUp = () => {
               <HStack>
                 <FormControl id="firstName" isRequired>
                   <FormLabel>First Name</FormLabel>
-                  <Input type="text" isRequired />
+                  <Input
+                    type="text"
+                    onChange={(e) => setName(e.target.value)}
+                    isRequired
+                  />
                 </FormControl>
               </HStack>
               <FormControl id="email" isRequired>
                 <FormLabel>Email address</FormLabel>
-                <Input type="email" isRequired />
+                <Input
+                  type="email"
+                  onChange={(e) => setEmail(e.target.value)}
+                  isRequired
+                />
               </FormControl>
               <FormControl id="password" isRequired>
                 <FormLabel>Password</FormLabel>
                 <InputGroup>
-                  <Input isRequired type={showPassword ? "text" : "password"} />
+                  <Input
+                    isRequired
+                    type={showPassword ? "text" : "password"}
+                    onChange={(e) => setPassword(e.target.value)}
+                  />
                   <InputRightElement h={"full"}>
                     <Button
                       variant={"ghost"}
@@ -71,11 +109,11 @@ const SignUp = () => {
                 <Button
                   loadingText="Submitting"
                   size="lg"
-                  onClick={handleRegister}
-                  bg={"blue.400"}
+                  onClick={handleSignup}
+                  bg={"#19c37d"}
                   color={"white"}
                   _hover={{
-                    bg: "blue.500",
+                    bg: "#606169",
                   }}
                 >
                   Sign up
@@ -84,9 +122,9 @@ const SignUp = () => {
               <Stack pt={6}>
                 <Text align={"center"}>
                   Already a user?{" "}
-                  {/* <Link color={"blue.400"} to="/login">
+                  <Link color={"#19c37d"} onClick={handleLogin}>
                     Login
-                  </Link> */}
+                  </Link>
                 </Text>
               </Stack>
             </Stack>

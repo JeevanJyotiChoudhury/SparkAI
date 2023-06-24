@@ -1,9 +1,11 @@
 html, body, #root, .App {
-  height: 100%;
+  height: auto;
 }
 .App {
   display: flex;
   flex-direction: column;
+  width:600px;
+  margin-bottom: 40px;
 }
 /* Add background color to the body */
 body {
@@ -16,9 +18,8 @@ body {
 
 /* Remove border color from the response list container */
 #response-list {
-  height: 95vh;
+  box-sizing: border-box;
   border: none;
-  overflow-y: auto;
   flex: 1;
 }
 
@@ -33,14 +34,13 @@ body {
 #input-container {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 10px;
   background-color: rgba(64, 65, 79, 1);
   border-color: rgba(32,33,35,.5);
   border-radius: 5px;
-  margin: 0px 200px;
-  position:relative;
-  bottom: 100px;
+  margin:auto;
+  width:600px;
+  position: fixed;
+  bottom:10px;
 }
 
 

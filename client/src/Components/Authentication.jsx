@@ -1,4 +1,4 @@
-import { Button } from "@chakra-ui/react";
+import { Box, Button, Flex, Grid, Text } from "@chakra-ui/react";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -11,10 +11,23 @@ const Authentication = () => {
     navigate("/signup");
   };
   return (
-    <div>
-      <Button onClick={redirectLogin}>Log In</Button>
-      <Button onClick={redirectSignup}>Sign Up</Button>
-    </div>
+    <Box
+      position="absolute"
+      top="50%"
+      left="50%"
+      transform="translate(-50%, -50%)"
+    >
+      <Text fontSize="4xl" color="white">
+        SparkAI
+      </Text>
+      <br />
+      <Button onClick={redirectLogin} mr={2}>
+        Log In
+      </Button>
+      <Button onClick={redirectSignup} ml={2}>
+        Sign Up
+      </Button>
+    </Box>
   );
 };
 

@@ -1,16 +1,24 @@
 import React from "react";
 import "./App.css";
-import HomePage from "./Pages/HomePage";
 import AllRoutes from "./Components/AllRoutes";
-import Mainpage from "./Components/Mainpage";
+import { ChakraProvider, extendTheme } from "@chakra-ui/react";
+
+const theme = extendTheme({
+  styles: {
+    global: {
+      body: {
+        bg: "#606169",
+        height: "100vh",
+      },
+    },
+  },
+});
 
 function App() {
   return (
-    <>
-      
-      {/* <AllRoutes/> */}
-      <Mainpage/>
-    </>
+    <ChakraProvider theme={theme}>
+      <AllRoutes/>
+    </ChakraProvider>
   );
 }
 

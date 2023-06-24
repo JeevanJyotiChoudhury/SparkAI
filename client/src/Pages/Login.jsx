@@ -5,33 +5,60 @@ import {
   FormControl,
   FormLabel,
   Input,
+  Checkbox,
   Stack,
-  Button,
-  Text,
   Link,
+  Button,
+  Heading,
+  Text,
+  useColorModeValue,
 } from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const handleLogin = () => {};
+  const navigate = useNavigate();
+  const handleSignup = () => {
+    navigate("/signup");
+  };
+  const handleLogin = (e) => {
+    e.preventDefault();
+    const userData = { email, password };
+    axios
+      .post("https://localhost:8080/user/login", userData)
+      .then((res) => {
+        console.log(res);
+        localStorage.setItem("ch-token", res.data?.token);
+        navigate("/chat");
+      })
+      .catch((err) => {
+        alert(err);
+      });
+  };
+
   return (
-    <div>
-      <Flex minH={"70vh"} align={"center"} justify={"center"}>
-        <Stack spacing={8} mx={"auto"} maxW={"2xl"} px={6}>
-          <Box w={"400px"} rounded={"lg"} boxShadow={"lg"} p={8}>
+    <div style={{ color: "white" }}>
+      <Flex align={"center"} justify={"center"}>
+        <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
+          <Stack align={"center"}>
+            <Heading fontSize={"3xl"}>Login to SparkAI</Heading>
+          </Stack>
+          <Box
+            rounded={"lg"}
+            bg={useColorModeValue("#3d3e42", "gray.700")}
+            boxShadow={"lg"}
+            p={8}
+          >
             <Stack spacing={4}>
-              <center>
-                <Text fontSize={"3xl"} as="b">
-                  LOGIN
-                </Text>
-              </center>
               <FormControl id="email">
-                <FormLabel>Enter Your Email Id</FormLabel>
+                <FormLabel>Email address</FormLabel>
                 <Input
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
+                  required
                 />
               </FormControl>
               <FormControl id="password">
@@ -40,38 +67,31 @@ const Login = () => {
                   type="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
+                  required
                 />
               </FormControl>
               <Stack spacing={10}>
+                <Stack
+                  direction={{ base: "column", sm: "row" }}
+                  align={"start"}
+                  justify={"space-between"}
+                >
+                  <Checkbox>Remember me</Checkbox>
+                </Stack>
                 <Button
-                  backgroundColor={"#ED2887"}
                   onClick={handleLogin}
+                  bg={"#19c37d"}
                   color={"white"}
                   _hover={{
-                    bg: "blue.500",
+                    bg: "#606169",
                   }}
-                  borderRadius="none"
-                  my={2}
                 >
-                  CONTINUE
+                  Sign in
                 </Button>
+                <Link color={"#19c37d"} onClick={handleSignup}>
+                  Signup
+                </Link>
               </Stack>
-              <Box>
-                Don't have a account
-                <Text color="blue">
-                  <Link>Sign Up</Link>
-                </Text>
-              </Box>
-              <hr />
-              
-              <Box py={6} mx={2}>
-                By proceeding, you agree to{" "}
-                <span>
-                  <Text color="#ED2887" textDecoration={"underline"}>
-                    Privacy Policy, Terms & Conditions
-                  </Text>
-                </span>
-              </Box>
             </Stack>
           </Box>
         </Stack>

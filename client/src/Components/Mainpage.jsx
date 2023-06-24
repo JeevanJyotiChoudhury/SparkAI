@@ -144,18 +144,24 @@ const Mainpage = () => {
   return (
     <div className="App">
       <div id="response-list">
-        <PromptResponseList responseList={responseList} key="response-list"/>
+        <PromptResponseList responseList={responseList} key="response-list" />
       </div>
-      
-      <div id="input-container">
-        <PromptInput
-          prompt={prompt}
-          onSubmit={() => getGPTResult()}
-          key="prompt-input"
-          updatePrompt={(prompt) => setPrompt(prompt)}
-        />
-        <button id="submit-button" className={isLoading ? 'loading' : ''} onClick={ getGPTResult}></button>
-      </div>
+
+      <center>
+        <div id="input-container">
+          <PromptInput
+            prompt={prompt}
+            onSubmit={() => getGPTResult()}
+            key="prompt-input"
+            updatePrompt={(prompt) => setPrompt(prompt)}
+          />
+          <button
+            id="submit-button"
+            className={isLoading ? "loading" : ""}
+            onClick={getGPTResult}
+          ></button>
+        </div>
+      </center>
     </div>
   );
 }

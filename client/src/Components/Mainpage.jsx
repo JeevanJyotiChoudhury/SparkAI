@@ -87,7 +87,7 @@ const Mainpage = () => {
     // Get the prompt input
     const _prompt = _promptToRetry ?? htmlToText(prompt);
 
-    // If a response is already being generated or the prompt is empty, return
+    // // If a response is already being generated or the prompt is empty, return
     if (isLoading || !_prompt) {
       return;
     }
@@ -114,7 +114,7 @@ const Mainpage = () => {
         prompt:prompt,
       });
 
-        
+        console.log(response)
      
         updateResponse(uniqueId, {
           response: response.data.message.content

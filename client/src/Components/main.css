@@ -9,11 +9,13 @@ html, body, #root, .App {
 }
 /* Add background color to the body */
 body {
+  
   background-color: rgba(68, 70, 84, 1.0);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   margin: 0;
+  
 }
 
 /* Remove border color from the response list container */
@@ -21,6 +23,7 @@ body {
   box-sizing: border-box;
   border: none;
   flex: 1;
+
 }
 
 .chatgpt-response {

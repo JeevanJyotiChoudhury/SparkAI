@@ -7,6 +7,10 @@ let privateKey = process.env.privateKey
 const RegisterController = async (req, res) => {
     const { name, email, password } = req.body
     try {
+        const isuserPresent = await userModel.findOne({ email })
+          if(isuserPresent){
+            return res.status(200).json({msg:"Login Directly"})
+          }
         bcrypt.hash(password, 4, async (err, hash) => {
             const user = new userModel({ name, email, password: hash })
             await user.save()
@@ -62,7 +66,7 @@ const LogoutController = async (req, res) => {
 
         res.send({ "msg": "Logout Succesfully", "ok": true })
     } catch (error) {
-        res.status(401).send({ "msg": error.message })
+         res.status(401).send({ "msg": error.message })
 
     }
 }

@@ -27,11 +27,18 @@ const Login = () => {
     e.preventDefault();
     const userData = { email, password };
     axios
-      .post("https://localhost:8080/user/login", userData)
+      .post("http://localhost:8080/user/login", userData)
       .then((res) => {
-        console.log(res);
-        localStorage.setItem("ch-token", res.data?.token);
+
+        console.log(res)
+      
+      if(res.data.msg==="login succesfull"){
+
+         alert(res.data.msg)
+        localStorage.setItem("ch-token", res.data?.accessToken);
         navigate("/chat");
+
+      }
       })
       .catch((err) => {
         alert(err);

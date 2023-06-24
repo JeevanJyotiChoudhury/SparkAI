@@ -5,7 +5,7 @@ const userRouter = require("./routes/user.route");
 const { connection } = require("./configs/db");
 require("dotenv").config();
 
-const openai = new OpenAIApi(
+ const openai = new OpenAIApi(
   new Configuration({
     apiKey: process.env.API_KEY,
   })

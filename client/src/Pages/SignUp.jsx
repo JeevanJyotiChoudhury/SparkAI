@@ -31,17 +31,18 @@ const SignUp = () => {
     e.preventDefault();
     const details = { name, email, password };
 
-    fetch("https://localhost:8080/user/register", {
+    fetch("http://localhost:8080/user/register", {
       method: "post",
       body: JSON.stringify(details),
       headers: { "Content-Type": "application/json" },
     })
       .then((res) => res.json())
       .then((res) => {
-        if (res.status == 200) {
+         console.log(res)
+        if (res.msg == "Registration Succesfull") {
           localStorage.setItem("ch-token", res.data?.token);
           alert("New User Has been Added");
-          navigate("/chat");
+          navigate("/login");
           console.log(res);
         } else {
           alert(res.error);

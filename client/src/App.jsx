@@ -8,7 +8,7 @@ const theme = extendTheme({
     global: {
       body: {
         bg: "#606169",
-        height: "100vh",
+        height:"auto"
       },
     },
   },

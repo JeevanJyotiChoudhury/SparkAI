@@ -1,7 +1,24 @@
 # SparkAI
 
 Deployed link :- https://6496e72215317c5bbbbe2667--fabulous-pixie-4f24cc.netlify.app/
+
 Back-end deployed link :- https://excited-lime-lab-coat.cyclic.app/
+
+Screenshots:- 
+
+Home page:-
+![image](https://github.com/JeevanJyotiChoudhury/SparkAI/assets/111522711/5c95c04f-9600-4f4d-b475-0f5ae12194fb)
+
+Signup page:-
+![image](https://github.com/JeevanJyotiChoudhury/SparkAI/assets/111522711/157833d6-3110-4c49-9da3-a712221327e0)
+
+Login page:-
+![image](https://github.com/JeevanJyotiChoudhury/SparkAI/assets/111522711/4e56c702-37cb-44bf-83ab-26240f604f17)
+
+Chat page:-
+![image](https://github.com/JeevanJyotiChoudhury/SparkAI/assets/111522711/4504f2e0-5ebb-4fff-b869-db976c2fb584)
+
+
 
 # **AI Interview Project**
 

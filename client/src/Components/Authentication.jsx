@@ -11,12 +11,7 @@ const Authentication = () => {
     navigate("/signup");
   };
   return (
-    <Box
-      position="absolute"
-      top="50%"
-      left="50%"
-      transform="translate(-50%, -50%)"
-    >
+    <Box style={{marginTop:"200px"}}>
       <Text fontSize="4xl" color="white">
         SparkAI
       </Text>
